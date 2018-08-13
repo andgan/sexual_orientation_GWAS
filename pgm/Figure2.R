@@ -74,13 +74,15 @@ mplot <- function(gwas, bp = NA, chrom = NA, pvalue = NA, intervals=NA, ymax=NA,
 }
 
 
+#######################################################
 
 ### !!! Notice that since we are allowed to share only 10000 SNPs from 23andMe the plot for non-heterosexual behaviour is actually not reproducible ####
 
-### Here we show the plot using only UK Biobank data, it will not match the plot in the paper ! ###
+###  We show the plot using only UK Biobank data, it will not match the plot in the paper ! ###
 
 ### Summary statistics can be downloaded: https://geneticsexorientation.info/summary-statistics/
 
+###########################################################
 
 
 ### PANEL A
