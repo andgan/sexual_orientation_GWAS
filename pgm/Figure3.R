@@ -14,7 +14,7 @@ mainliab <- 0.034
 ## Load h2 calculated from familial relationships
 
 # Binary
-fam <- read.table("data/family_h2.tsv", header=T, stringsAsFactor=F)
+fam <- read.table("data/family_h2.tsv", header=T, stringsAsFactor=F, sep="\t")
 fam <- fam[,c("trait","SA","se.SA")]
 
 
@@ -45,8 +45,7 @@ mm$se.h2 <- ifelse(!is.na(mm$liab),mm$Prop._h2_std_error*mm$liab*(1-mm$liab)/(dn
 mm$xup <- mm$h2 + 1.96*mm$se.h2
 mm$xdo <- mm$h2 - 1.96*mm$se.h2
 
-mm$label <- ifelse(mm$trait=="nonhet","Non-heterosexual behaviour",
-ifelse(mm$trait=="nhetpartners","N. of opposite-sex partners in heterosexuals",NA))
+mm$label <- ifelse(mm$trait=="nonhet","Same-sex sexual behavior",NA)
 
 
 pdf("fig/figure3.pdf",width=5,height=5)

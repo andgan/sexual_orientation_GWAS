@@ -1,0 +1,113 @@
+p1,p2,rg,se,z,p,h2_obs,h2_obs_se,h2_int,h2_int_se,gcov_int,gcov_int_se,sex,p2_new,ymin,ymax,group
+MTAG.NHB_partners.F,ADHD_2017,0.2525,0.059038,4.2766,1.8977e-05,0.2291,0.0148,1.0308,0.0105,0.0034009,0.0062,Female,ADHD,0.13678552,0.36821448,All non-heterosexuals
+MTAG.NHB_partners.F,AgeFirstBirth_Male,-0.0904,0.080338,-1.1255,0.2604,0.1145,0.0108,0.9419,0.0067,-0.0014883,0.0051,Female,Age at first birth (Males),-0.24786248,0.06706248,All non-heterosexuals
+MTAG.NHB_partners.F,AgeFirstBirth_Female,-0.1458,0.062703,-2.3254,0.02005,0.0524,0.0038,0.97,0.0075,-0.0025399,0.0052,Female,Age at first birth (Females),-0.26869788,-0.02290212,All non-heterosexuals
+MTAG.NHB_partners.F,finger2d4d,0.0022,0.13851,0.01577,0.98742,0.1841,0.0613,1.0025,0.009,-9.4776e-05,0.0052,Female,2D:4D digit ratio,-0.2692796,0.2736796,All non-heterosexuals
+MTAG.NHB_partners.F,openness,0.3119,0.066497,4.6906,2.7235e-06,0.0991,0.0075,0.9523,0.0074,0.028106,0.0052,Female,Openness to experience,0.18156588,0.44223412,All non-heterosexuals
+MTAG.NHB_partners.F,MDD2018_ex23andMe,0.4379,0.058893,7.4361,1.0367e-13,0.0758,0.0048,0.9956,0.0091,-0.0095932,0.0059,Female,Major depressive disorder,0.32246972,0.55333028,All non-heterosexuals
+MTAG.NHB_partners.F,Neuroticism_Full,0.2197,0.067194,3.2693,0.0010782,0.0893,0.0081,0.9887,0.013,-0.025222,0.0066,Female,Neuroticism,0.08799976,0.35140024,All non-heterosexuals
+MTAG.NHB_partners.F,NumberChildrenEverBorn_Male,0.296,0.10745,2.7549,0.0058715,0.0337,0.0052,0.973,0.0064,-0.0086992,0.0051,Female,Number of children (Males),0.085398,0.506602,All non-heterosexuals
+MTAG.NHB_partners.F,NumberChildrenEverBorn_Female,0.0864,0.085421,1.0119,0.31158,0.0213,0.0023,0.9779,0.0068,-0.010303,0.005,Female,Number of children (Females),-0.08102516,0.25382516,All non-heterosexuals
+MTAG.NHB_partners.F,SCZ2,0.1732,0.045969,3.768,0.00016458,0.2419,0.0101,1.0421,0.0129,0.010696,0.0069,Female,Schizophrenia,0.08310076,0.26329924,All non-heterosexuals
+MTAG.NHB_partners.F,SWB_Full,-0.2861,0.078529,-3.6437,0.00026876,0.0253,0.0021,0.9998,0.0075,0.0070229,0.0058,Female,Subjective well-being,-0.44001684,-0.13218316,All non-heterosexuals
+MTAG.NHB_partners.F,age_at_menarche,-0.0487,0.050043,-0.97263,0.33074,0.2495,0.0128,0.9666,0.0112,-0.0023875,0.0055,Female,Age at menarche,-0.14678428,0.04938428,All non-heterosexuals
+MTAG.NHB_partners.F,age_at_menopauze,-0.0693,0.063549,-1.0912,0.2752,0.1361,0.0158,0.9888,0.0138,0.0083158,0.0056,Female,Age at menopause,-0.19385604,0.05525604,All non-heterosexuals
+MTAG.NHB_partners.F,alcohol_clarke,0.1485,0.064933,2.2867,0.022213,0.0802,0.006,1.0112,0.0078,0.010688,0.0049,Female,Alcohol use,0.02123132,0.27576868,All non-heterosexuals
+MTAG.NHB_partners.F,anorexia,-0.0849,0.10009,-0.84833,0.39625,0.191,0.0313,1.0109,0.0082,-0.0026548,0.0053,Female,Anorexia,-0.2810764,0.1112764,All non-heterosexuals
+MTAG.NHB_partners.F,anxiety,0.2512,0.17935,1.4003,0.16141,0.0586,0.0258,1.0019,0.0067,-0.0062727,0.0053,Female,Anxiety,-0.100326,0.602726,All non-heterosexuals
+MTAG.NHB_partners.F,autism_2017,0.2102,0.068199,3.0815,0.0020596,0.1948,0.0165,1.008,0.0096,0.0036361,0.0066,Female,Autism,0.07652996,0.34387004,All non-heterosexuals
+MTAG.NHB_partners.F,bipolar,0.3401,0.07732,4.3992,1.0864e-05,0.1184,0.011,1.0138,0.0104,-0.0027773,0.0067,Female,Bipolar disorder,0.1885528,0.4916472,All non-heterosexuals
+MTAG.NHB_partners.F,birth_weight,0.0349,0.050391,0.69329,0.48813,0.1026,0.0068,1.0406,0.0101,-0.0029426,0.0048,Female,Birth weight,-0.06386636,0.13366636,All non-heterosexuals
+MTAG.NHB_partners.F,cannabis_ever_2018,0.6713,0.061609,10.896,1.1999e-27,0.0669,0.0045,1.003,0.0077,0.063114,0.0048,Female,Cannabis use,0.55054636,0.79205364,All non-heterosexuals
+MTAG.NHB_partners.F,height_combined,-0.0426,0.03883,-1.0961,0.27302,0.342,0.0178,1.2289,0.0322,0.002891,0.0078,Female,Height,-0.1187068,0.0335068,All non-heterosexuals
+MTAG.NHB_partners.F,loneliness,0.2196,0.053146,4.1311,3.6096e-05,0.0414,0.0026,1.0239,0.0076,0.0024293,0.0044,Female,Loneliness,0.11543384,0.32376616,All non-heterosexuals
+MTAG.NHB_partners.F,risk_behavior,0.4015,0.051841,7.7453,9.5391e-15,0.0545,0.0025,1.0208,0.0108,0.049435,0.0057,Female,Risk behaviour,0.29989164,0.50310836,All non-heterosexuals
+MTAG.NHB_partners.F,self_rated_health,0.1084,0.061757,1.7549,0.079272,0.0949,0.0063,1.0168,0.0077,-0.0023495,0.0051,Female,Self-rated health,-0.01264372,0.22944372,All non-heterosexuals
+MTAG.NHB_partners.F,smoking_ever_vs_never,0.4462,0.081622,5.4669,4.5808e-08,0.071,0.0067,1.0026,0.0064,-0.0093866,0.0049,Female,Smoking: ever smoking,0.28622088,0.60617912,All non-heterosexuals
+MTAG.NHB_partners.F,whr_males,0.0189,0.093962,0.20127,0.84049,0.1181,0.0151,0.9404,0.0069,-0.0034882,0.0049,Female,Waist-to-hip ratio (Males),-0.16526552,0.20306552,All non-heterosexuals
+MTAG.NHB_partners.F,whr_females,0.0476,0.084688,0.56207,0.57407,0.1078,0.0144,0.9423,0.0074,0.00069299,0.0049,Female,Waist-to-hip ratio (Females),-0.11838848,0.21358848,All non-heterosexuals
+MTAG.NHB_partners.M,ADHD_2017,0.2724,0.060305,4.5165,6.2863e-06,0.2291,0.0149,1.0309,0.0105,-0.0046433,0.0065,Male,ADHD,0.1542022,0.3905978,All non-heterosexuals
+MTAG.NHB_partners.M,AgeFirstBirth_Male,-0.1934,0.061584,-3.1408,0.0016846,0.1146,0.0107,0.9418,0.0067,-0.0010763,0.0043,Male,Age at first birth (Males),-0.31410464,-0.07269536,All non-heterosexuals
+MTAG.NHB_partners.M,AgeFirstBirth_Female,-0.235,0.058527,-4.0157,5.928e-05,0.0524,0.0038,0.9701,0.0075,-0.0036642,0.0052,Male,Age at first birth (Females),-0.34971292,-0.12028708,All non-heterosexuals
+MTAG.NHB_partners.M,finger2d4d,0.2368,0.099327,2.3837,0.01714,0.184,0.0613,1.0025,0.009,-0.0042879,0.0046,Male,2D:4D digit ratio,0.04211908,0.43148092,All non-heterosexuals
+MTAG.NHB_partners.M,openness,0.1354,0.059894,2.2614,0.023735,0.0991,0.0075,0.9523,0.0074,0.0056045,0.0058,Male,Openness to experience,0.01800776,0.25279224,All non-heterosexuals
+MTAG.NHB_partners.M,MDD2018_ex23andMe,0.3282,0.054598,6.0118,1.8348e-09,0.0757,0.0048,0.996,0.0091,0.0017709,0.0059,Male,Major depressive disorder,0.22118792,0.43521208,All non-heterosexuals
+MTAG.NHB_partners.M,Neuroticism_Full,0.1588,0.051865,3.0623,0.0021965,0.0893,0.0081,0.9887,0.013,0.008472,0.0055,Male,Neuroticism,0.0571446,0.2604554,All non-heterosexuals
+MTAG.NHB_partners.M,NumberChildrenEverBorn_Male,0.1779,0.090621,1.9632,0.049621,0.0337,0.0052,0.9731,0.0064,-0.028244,0.0051,Male,Number of children (Males),0.000282840000000006,0.35551716,All non-heterosexuals
+MTAG.NHB_partners.M,NumberChildrenEverBorn_Female,0.0132,0.076245,0.17315,0.86253,0.0212,0.0023,0.9782,0.0068,0.00063997,0.0049,Male,Number of children (Females),-0.1362402,0.1626402,All non-heterosexuals
+MTAG.NHB_partners.M,SCZ2,0.1285,0.03825,3.3587,0.0007831,0.2419,0.0101,1.042,0.0129,0.0043255,0.0062,Male,Schizophrenia,0.05353,0.20347,All non-heterosexuals
+MTAG.NHB_partners.M,SWB_Full,-0.0911,0.074605,-1.2217,0.22183,0.0253,0.0021,0.9998,0.0075,-0.010909,0.0056,Male,Subjective well-being,-0.2373258,0.0551258,All non-heterosexuals
+MTAG.NHB_partners.M,age_at_menarche,-0.086,0.04448,-1.9332,0.053217,0.2496,0.0127,0.9665,0.0112,0.0015305,0.005,Male,Age at menarche,-0.1731808,0.00118080000000001,All non-heterosexuals
+MTAG.NHB_partners.M,age_at_menopauze,-0.0792,0.06089,-1.3007,0.19337,0.136,0.0158,0.9889,0.0138,0.0025461,0.0054,Male,Age at menopause,-0.1985444,0.0401444,All non-heterosexuals
+MTAG.NHB_partners.M,alcohol_clarke,-0.0247,0.057164,-0.43228,0.66554,0.0802,0.006,1.0112,0.0078,0.002946,0.0045,Male,Alcohol use,-0.13674144,0.08734144,All non-heterosexuals
+MTAG.NHB_partners.M,anorexia,-0.0201,0.095017,-0.21138,0.83259,0.1911,0.0313,1.011,0.0082,-0.00080451,0.0052,Male,Anorexia,-0.20633332,0.16613332,All non-heterosexuals
+MTAG.NHB_partners.M,anxiety,-0.0497,0.14243,-0.34889,0.72717,0.0586,0.0259,1.0019,0.0067,0.0045256,0.005,Male,Anxiety,-0.3288628,0.2294628,All non-heterosexuals
+MTAG.NHB_partners.M,autism_2017,0.0975,0.069197,1.4096,0.15866,0.1947,0.0166,1.0081,0.0097,0.0026035,0.0056,Male,Autism,-0.03812612,0.23312612,All non-heterosexuals
+MTAG.NHB_partners.M,bipolar,0.0185,0.076141,0.24355,0.80758,0.1185,0.011,1.0137,0.0104,0.0097415,0.0071,Male,Bipolar disorder,-0.13073636,0.16773636,All non-heterosexuals
+MTAG.NHB_partners.M,birth_weight,-0.0463,0.047547,-0.97296,0.33057,0.1026,0.0069,1.0405,0.0101,-0.0021906,0.005,Male,Birth weight,-0.13949212,0.04689212,All non-heterosexuals
+MTAG.NHB_partners.M,cannabis_ever_2018,0.3075,0.057908,5.3107,1.092e-07,0.067,0.0045,1.0028,0.0077,0.031258,0.0053,Male,Cannabis use,0.19400032,0.42099968,All non-heterosexuals
+MTAG.NHB_partners.M,height_combined,-0.0747,0.032785,-2.2782,0.022714,0.3422,0.0178,1.2285,0.0321,0.0021168,0.0071,Male,Height,-0.1389586,-0.0104414,All non-heterosexuals
+MTAG.NHB_partners.M,loneliness,0.2179,0.052926,4.1176,3.8277e-05,0.0414,0.0026,1.024,0.0076,0.023271,0.0049,Male,Loneliness,0.11416504,0.32163496,All non-heterosexuals
+MTAG.NHB_partners.M,risk_behavior,0.2239,0.046852,4.7783,1.7676e-06,0.0545,0.0025,1.0209,0.0108,0.0079321,0.0058,Male,Risk behaviour,0.13207008,0.31572992,All non-heterosexuals
+MTAG.NHB_partners.M,self_rated_health,0.1255,0.058874,2.1316,0.033038,0.0948,0.0063,1.0171,0.0077,0.0044345,0.0053,Male,Self-rated health,0.01010696,0.24089304,All non-heterosexuals
+MTAG.NHB_partners.M,smoking_ever_vs_never,0.2049,0.072875,2.8118,0.0049261,0.071,0.0067,1.0026,0.0064,0.0006014,0.0048,Male,Smoking: ever smoking,0.062065,0.347735,All non-heterosexuals
+MTAG.NHB_partners.M,whr_males,-0.0485,0.079545,-0.60909,0.54246,0.118,0.0151,0.9404,0.0069,0.0081107,0.005,Male,Waist-to-hip ratio (Males),-0.2044082,0.1074082,All non-heterosexuals
+MTAG.NHB_partners.M,whr_females,0.0287,0.073809,0.38828,0.69781,0.108,0.0145,0.9421,0.0074,7.8959e-05,0.0053,Male,Waist-to-hip ratio (Females),-0.11596564,0.17336564,All non-heterosexuals
+MTAG.hethomratio_klein_partners.F,ADHD_2017,-0.0032,0.097285,-0.033094,0.9736,0.2328,0.015,1.0276,0.0106,-0.00091435,0.0064,Female,ADHD,-0.1938786,0.1874786,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,AgeFirstBirth_Male,-0.0704,0.11713,-0.60075,0.54801,0.1167,0.0116,0.9387,0.0075,0.0016102,0.0047,Female,Age at first birth (Males),-0.2999748,0.1591748,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,AgeFirstBirth_Female,-0.1461,0.099444,-1.469,0.14183,0.0517,0.0036,0.9718,0.0082,0.0023136,0.0049,Female,Age at first birth (Females),-0.34101024,0.04881024,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,finger2d4d,-0.0099,0.15302,-0.064374,0.94867,0.193,0.0578,1.0011,0.0087,0.0040937,0.0046,Female,2D:4D digit ratio,-0.3098192,0.2900192,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,openness,-0.2783,0.10377,-2.6822,0.007313,0.0992,0.0077,0.952,0.0081,0.003575,0.0048,Female,Openness to experience,-0.4816892,-0.0749108,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,MDD2018_ex23andMe,-0.1418,0.089979,-1.5758,0.11508,0.0762,0.0047,0.9949,0.0101,-0.0003349,0.0061,Female,Major depressive disorder,-0.31815884,0.03455884,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,Neuroticism_Full,0.0257,0.086991,0.29507,0.76794,0.0889,0.0067,0.9894,0.0116,0.0043344,0.0058,Female,Neuroticism,-0.14480236,0.19620236,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,NumberChildrenEverBorn_Male,-0.0467,0.15641,-0.29855,0.76528,0.0332,0.0051,0.974,0.0071,-0.00075802,0.0049,Female,Number of children (Males),-0.3532636,0.2598636,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,NumberChildrenEverBorn_Female,0.0159,0.13082,0.12164,0.90318,0.0212,0.0024,0.9784,0.0073,-0.0088553,0.0052,Female,Number of children (Females),-0.2405072,0.2723072,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,SCZ2,0.0745,0.064901,1.1481,0.25091,0.2424,0.0096,1.0409,0.0127,-0.013744,0.0068,Female,Schizophrenia,-0.05270596,0.20170596,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,SWB_Full,-0.014,0.10566,-0.13215,0.89486,0.0246,0.0021,1.005,0.0078,0.0036775,0.0053,Female,Subjective well-being,-0.2210936,0.1930936,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,age_at_menarche,-0.1857,0.073884,-2.5138,0.011943,0.2501,0.0125,0.9655,0.0113,0.0024464,0.0055,Female,Age at menarche,-0.33051264,-0.04088736,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,age_at_menopauze,-0.2111,0.10349,-2.0397,0.041377,0.1325,0.0161,0.9906,0.0167,0.013145,0.0053,Female,Age at menopause,-0.4139404,-0.00825960000000001,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,alcohol_clarke,-0.0321,0.10835,-0.29656,0.76681,0.0804,0.0062,1.01,0.0077,-0.012603,0.0052,Female,Alcohol use,-0.244466,0.180266,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,anorexia,0.0263,0.14878,0.17695,0.85955,0.1952,0.0322,1.0102,0.0088,0.0071884,0.0054,Female,Anorexia,-0.2653088,0.3179088,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,anxiety,0.2794,0.30588,0.91357,0.36094,0.0509,0.025,1.0041,0.007,-0.0048569,0.0052,Female,Anxiety,-0.3201248,0.8789248,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,autism_2017,-0.1593,0.10374,-1.5355,0.12467,0.194,0.0181,1.008,0.0103,-0.007643,0.0061,Female,Autism,-0.3626304,0.0440304,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,bipolar,0.0314,0.11099,0.28278,0.77735,0.1188,0.0118,1.0134,0.0112,-0.014076,0.0066,Female,Bipolar disorder,-0.1861404,0.2489404,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,birth_weight,-0.1708,0.076809,-2.2242,0.026137,0.1028,0.0072,1.0389,0.0104,0.0067807,0.0046,Female,Birth weight,-0.32134564,-0.02025436,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,cannabis_ever_2018,-0.4298,0.094243,-4.5601,5.1124e-06,0.0667,0.0046,1.0024,0.0082,-0.022374,0.0051,Female,Cannabis use,-0.61451628,-0.24508372,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,height_combined,-0.0244,0.055045,-0.44402,0.65703,0.3405,0.0184,1.2306,0.032,0.00030754,0.0068,Female,Height,-0.1322882,0.0834882,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,loneliness,-0.0751,0.091594,-0.81968,0.4124,0.0412,0.0025,1.0255,0.0083,-0.0019757,0.0051,Female,Loneliness,-0.25462424,0.10442424,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,risk_behavior,-0.2174,0.079114,-2.7474,0.0060064,0.0547,0.0026,1.0183,0.0111,-0.019466,0.0058,Female,Risk behaviour,-0.37246344,-0.06233656,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,self_rated_health,0.184,0.10097,1.8222,0.068423,0.0952,0.0059,1.0153,0.0078,0.00043986,0.0053,Female,Self-rated health,-0.0139012,0.3819012,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,smoking_ever_vs_never,-0.0693,0.12289,-0.56376,0.57292,0.0716,0.0073,1.0014,0.0068,-6.0634e-05,0.0046,Female,Smoking: ever smoking,-0.3101644,0.1715644,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,whr_males,0.1794,0.14042,1.2775,0.20142,0.1147,0.015,0.942,0.0071,-0.0048515,0.0046,Female,Waist-to-hip ratio (Males),-0.0958232,0.4546232,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.F,whr_females,0.058,0.12102,0.47909,0.63188,0.111,0.0155,0.9398,0.0082,0.0042878,0.0051,Female,Waist-to-hip ratio (Females),-0.1791992,0.2951992,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,ADHD_2017,-0.0887,0.073185,-1.2114,0.22573,0.2329,0.015,1.0273,0.0106,-0.0029,0.006,Male,ADHD,-0.2321426,0.0547426,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,AgeFirstBirth_Male,0.2011,0.10122,1.9863,0.047004,0.1171,0.0116,0.9383,0.0075,-0.0011,0.0053,Male,Age at first birth (Males),0.00270879999999998,0.3994912,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,AgeFirstBirth_Female,0.1139,0.081048,1.4056,0.15985,0.0516,0.0036,0.9723,0.0083,0.0044,0.0053,Male,Age at first birth (Females),-0.04495408,0.27275408,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,finger2d4d,0.2178,0.14303,1.5228,0.12781,0.1947,0.0579,1.0008,0.0087,-0.007,0.0046,Male,2D:4D digit ratio,-0.0625388,0.4981388,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,openness,-0.4325,0.11235,-3.8495,0.00011835,0.0992,0.0077,0.952,0.0081,-2e-04,0.0058,Male,Openness to experience,-0.652706,-0.212294,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,MDD2018_ex23andMe,-0.222,0.078629,-2.8235,0.0047503,0.076,0.0047,0.9958,0.0099,-5e-04,0.0055,Male,Major depressive disorder,-0.37611284,-0.06788716,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,Neuroticism_Full,0.0137,0.073334,0.1871,0.8516,0.0889,0.0067,0.9894,0.0116,-0.0043,0.0054,Male,Neuroticism,-0.13003464,0.15743464,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,NumberChildrenEverBorn_Male,-0.6438,0.15473,-4.1609,3.1698e-05,0.0333,0.0051,0.9738,0.0071,5e-04,0.0054,Male,Number of children (Males),-0.9470708,-0.3405292,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,NumberChildrenEverBorn_Female,-0.1083,0.11815,-0.9166,0.35936,0.0212,0.0024,0.9787,0.0073,-0.0098,0.0052,Male,Number of children (Females),-0.339874,0.123274,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,SCZ2,-0.0311,0.061186,-0.5079,0.61154,0.2425,0.0096,1.0406,0.0129,2e-04,0.0066,Male,Schizophrenia,-0.15102456,0.08882456,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,SWB_Full,0.0188,0.096188,0.1958,0.84474,0.0246,0.0021,1.005,0.0078,-0.0012,0.005,Male,Subjective well-being,-0.16972848,0.20732848,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,age_at_menarche,0.0267,0.062224,0.429,0.66791,0.2501,0.0125,0.9656,0.0113,-0.0012,0.0056,Male,Age at menarche,-0.09525904,0.14865904,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,age_at_menopauze,0.0412,0.086423,0.4763,0.63383,0.1325,0.0161,0.9905,0.0167,-0.0016,0.0057,Male,Age at menopause,-0.12818908,0.21058908,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,alcohol_clarke,-0.0973,0.0907,-1.0731,0.28322,0.0804,0.0062,1.0102,0.0077,-0.0074,0.0056,Male,Alcohol use,-0.275072,0.080472,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,anorexia,-0.0063,0.12698,-0.0496,0.96042,0.1951,0.0321,1.0102,0.0088,0.0049,0.0055,Male,Anorexia,-0.2551808,0.2425808,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,anxiety,-0.0565,0.21545,-0.2621,0.79321,0.0509,0.025,1.0041,0.007,0.0016,0.005,Male,Anxiety,-0.478782,0.365782,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,autism_2017,-0.2453,0.10069,-2.4366,0.014825,0.1941,0.0181,1.008,0.0103,-0.0032,0.0062,Male,Autism,-0.4426524,-0.0479476,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,bipolar,-0.0138,0.10239,-0.1344,0.89306,0.1182,0.0118,1.0142,0.0113,-0.0065,0.0072,Male,Bipolar disorder,-0.2144844,0.1868844,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,birth_weight,-0.0333,0.085734,-0.3881,0.69793,0.1029,0.0072,1.0387,0.0105,-0.0038,0.0054,Male,Birth weight,-0.20133864,0.13473864,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,cannabis_ever_2018,-0.4333,0.095366,-4.5437,5.5288e-06,0.0667,0.0046,1.0022,0.0082,-0.0081,0.005,Male,Cannabis use,-0.62021736,-0.24638264,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,height_combined,-0.111,0.050995,-2.1757,0.029577,0.3407,0.0183,1.2302,0.0319,0.0141,0.0074,Male,Height,-0.2109502,-0.0110498,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,loneliness,-0.1061,0.084184,-1.2605,0.20749,0.0411,0.0025,1.0259,0.0083,-0.0035,0.0055,Male,Loneliness,-0.27110064,0.05890064,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,risk_behavior,-0.2445,0.078464,-3.1163,0.0018311,0.0547,0.0026,1.0186,0.0112,-0.0203,0.006,Male,Risk behaviour,-0.39828944,-0.09071056,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,self_rated_health,-0.0288,0.08021,-0.3593,0.71933,0.0951,0.006,1.0155,0.0079,-0.0029,0.0052,Male,Self-rated health,-0.1860116,0.1284116,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,smoking_ever_vs_never,-0.2085,0.10926,-1.9081,0.056377,0.0713,0.0073,1.0019,0.0068,0.0037,0.0048,Male,Smoking: ever smoking,-0.4226496,0.0056496,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,whr_males,0.0518,0.11645,0.4445,0.6567,0.1142,0.015,0.9422,0.0071,0.0056,0.0051,Male,Waist-to-hip ratio (Males),-0.176442,0.280042,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,whr_females,0.0124,0.11335,0.109,0.91319,0.1107,0.0155,0.94,0.0082,0.0019,0.0049,Male,Waist-to-hip ratio (Females),-0.209766,0.234566,Excluding exclusively same-sex
+MTAG.NHB_partners.F,number_sexual_partners,0.6806,0.053,12.8384,9.9953e-38,0.0995,0.0036,1.0091,0.0103,0.0914,0.0067,Female,Number of sex partners,0.57672,0.78448,All non-heterosexuals
+MTAG.NHB_partners.M,number_sexual_partners,0.4073,0.0401,10.1497,3.3254e-24,0.0995,0.0036,1.009,0.0103,0.0819,0.0064,Male,Number of sex partners,0.328704,0.485896,All non-heterosexuals
+MTAG.hethomratio_klein_partners.F,number_sexual_partners,-0.2512,0.0699,-3.5916,3e-04,0.0999,0.0037,1.0052,0.0119,-0.0691,0.0059,Female,Number of sex partners,-0.388204,-0.114196,Excluding exclusively same-sex
+MTAG.hethomratio_klein_partners.M,number_sexual_partners,-0.4042,0.0776,-5.207,1.9193e-07,0.0999,0.0037,1.0054,0.0117,0.0091,0.0062,Male,Number of sex partners,-0.556296,-0.252104,Excluding exclusively same-sex

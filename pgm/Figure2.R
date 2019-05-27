@@ -6,53 +6,59 @@ library(data.table)
 mplot <- function(gwas, bp = NA, chrom = NA, pvalue = NA, intervals=NA, ymax=NA, minval=0.01) 
 	{
 		dfm <- as.data.frame(gwas)
-		dfm$chrom <- dfm[,chrom]
-		dfm$bp <- as.numeric(as.character(dfm[,bp]))
-		dfm$pvalue <- as.numeric(as.character(dfm[,pvalue]))
-		dfm$chrom <- as.character(dfm$chrom)
-		dfm$marker <- -log10(dfm$pvalue)
-		## Remove P-value > 0.001
-		dfm <- dfm[dfm$marker > -log10(minval),]
-		##add index
-		dfm <- dfm[order(dfm$bp),]
-		dfm <- dfm[mixedorder(dfm$chrom),]
-		dfm$index <- 1:nrow(dfm)
-		chrtable <- data.frame(table(dfm$chrom))
+
+
+		posmin <- tapply(dfm[,bp],dfm[,chrom], min)
+    	posmax <- tapply(dfm[,bp],dfm[,chrom], max)
+    	posshift <- head(c(0,cumsum(as.numeric(posmax))),-1)
+
+	    names(posshift) <- names(posmin)
+	    for (k in unique(dfm[,chrom]))
+	    {
+	        dfm$pos_new[dfm[,chrom]==k] <-  dfm[,bp][dfm[,chrom]==k] + posshift[names(posshift) == k]
+	    }
+
+	  	dfmsplit <- split(dfm, dfm[,chrom])
+	    xbreaks <- sapply(dfmsplit,function(x) x$pos_new[length(x$pos_new)/2])
+
+	    dfm$marker <- -log10(dfm[,pvalue])
+	    df_manhattan <- dfm[dfm$marker > -log10(minval),]
+
+
+	    ymax <- ifelse(max(df_manhattan$marker) < -log10(5e-8), -log10(5e-8), max(df_manhattan$marker)) + 0.2
+
+
+		chrtable <- data.frame(table(df_manhattan[,chrom]))
 		chrtable$Var1 <- as.character(chrtable$Var1)
 		chrtable <- chrtable[mixedorder(chrtable$Var1),]
 		oddchrom <- as.character(chrtable$Var1[seq(1,nrow(chrtable),2)])
-		dfm$chrom_alt <- replace(dfm$chrom, dfm$chrom %in% oddchrom, 0)
-		dfm$chrom_alt <- replace(dfm$chrom_alt, dfm$chrom_alt != 0,1)
-		dfm$chrom_altA <- ifelse(dfm$chrom_alt=="1",1,2)
-		if (is.na(ymax))
-		{
-		ymax <- max(-log10(dfm$pvalue)) + 1
-		}
-		dfmsplit <- split(dfm, dfm$chrom)
-		xbreaks <- sapply(dfmsplit,function(x) x$index[length(x$index)/2])
-		dfm$inint <- 1
-		dfm$shape <- 16
-		dfm$fill <- 0
+		df_manhattan$chrom_alt <- replace(df_manhattan[,chrom], df_manhattan[,chrom] %in% oddchrom, 0)
+		df_manhattan$chrom_alt <- replace(df_manhattan$chrom_alt, df_manhattan$chrom_alt != 0,1)
+		df_manhattan$chrom_altA <- ifelse(df_manhattan$chrom_alt=="1",1,2)
+		if (is.na(ymax)) {ymax <- max(-log10(df_manhattan[,pvalue])) + 1}
 
-		dfm$linepos <- NA
-		dfm$linepos[dfm$index[!duplicated(dfm$CHR)]] <- dfm$index[!duplicated(dfm$CHR)]
-
-
+		df_manhattan$inint <- 1
+		df_manhattan$shape <- 16
+		df_manhattan$fill <- 0
 		for (i in 1:nrow(intervals))
 		{
-			dfm$inint[dfm$CHR==intervals$chr[i] & dfm$bp<=intervals$end[i] & dfm$bp>=intervals$start[i]] <- 2
-			dfm$chrom_altA[dfm$CHR==intervals$chr[i] & dfm$bp<=intervals$end[i] & dfm$bp>=intervals$start[i]] <- 2
-			dfm$fill[dfm$CHR==intervals$chr[i] & dfm$bp<=intervals$end[i] & dfm$bp>=intervals$start[i]] <- ifelse(intervals$sex[i]=="M",1,ifelse(intervals$sex[i]=="F",2,ifelse(intervals$sex[i]=="MF",3,NA)))
-			dfm$shape[dfm$CHR==intervals$chr[i] & dfm$bp<=intervals$end[i] & dfm$bp>=intervals$start[i]] <- 21
-			ind_min = intersect(which(dfm$pvalue == min(dfm$pvalue[dfm$CHR==intervals$chr[i] & dfm$bp<=intervals$end[i] & dfm$bp>=intervals$start[i]])), seq(dfm$pvalue)[dfm$CHR==intervals$chr[i] & dfm$bp<=intervals$end[i] & dfm$bp>=intervals$start[i]])
-			dfm$shape[ind_min] <- ifelse(intervals$sex[i]=="M",25,
+			df_manhattan$inint[df_manhattan[,chrom]==intervals$chr[i] & df_manhattan[,bp]<=intervals$end[i] & df_manhattan[,bp]>=intervals$start[i]] <- 1
+			df_manhattan$chrom_altA[df_manhattan[,chrom]==intervals$chr[i] & df_manhattan[,bp]<=intervals$end[i] & df_manhattan[,bp]>=intervals$start[i]] <- 1
+			df_manhattan$fill[df_manhattan[,chrom]==intervals$chr[i] & df_manhattan[,bp]<=intervals$end[i] & df_manhattan[,bp]>=intervals$start[i]] <- ifelse(intervals$sex[i]=="M",1,ifelse(intervals$sex[i]=="F",2,ifelse(intervals$sex[i]=="MF",3,NA)))
+			df_manhattan$shape[df_manhattan[,chrom]==intervals$chr[i] & df_manhattan[,bp]<=intervals$end[i] & df_manhattan[,bp]>=intervals$start[i]] <- 16
+
+			ind_min = intersect(which(df_manhattan[,pvalue] == min(df_manhattan[,pvalue][df_manhattan[,chrom]==intervals$chr[i] & df_manhattan[,bp]<=intervals$end[i] & df_manhattan[,bp]>=intervals$start[i]])), seq(df_manhattan[,pvalue])[df_manhattan[,chrom]==intervals$chr[i] & df_manhattan[,bp]<=intervals$end[i] & df_manhattan[,bp]>=intervals$start[i]])
+
+			df_manhattan$shape[ind_min] <- ifelse(intervals$sex[i]=="M",25,
 							   ifelse(intervals$sex[i]=="F",24,
 							   ifelse(intervals$sex[i]=="MF",23,NA)))
-			dfm$inint[ind_min] <- 3
-			dfm <- rbind(dfm,dfm[ind_min,])
-		}
 
-		p1 <- ggplot(dfm, aes(x = index,y = marker)) +
+			print(df_manhattan$shape[ind_min])
+			df_manhattan$inint[ind_min] <- 3
+			df_manhattan <- rbind(df_manhattan,df_manhattan[ind_min,])
+
+		}
+		p1 <- ggplot(df_manhattan, aes(x = pos_new,y = marker)) +
 	                geom_point(aes(size=as.factor(inint),
 	                	shape=shape,
 	                	fill=as.factor(fill),
@@ -64,14 +70,13 @@ mplot <- function(gwas, bp = NA, chrom = NA, pvalue = NA, intervals=NA, ymax=NA,
 	                expand_limits(x = 22.3) +
 	                guides(colour = FALSE,alpha=FALSE, size=FALSE, fill=FALSE) +
 	                labs(x = "chromosome", y = "-log10(P value)") + 
-	                theme(panel.border = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.background = element_blank(), axis.line = element_line(colour = "red")) +
+	                theme(panel.border = element_blank(),panel.grid.major = element_blank(),panel.grid.minor = element_blank(),panel.background = element_rect(fill = "transparent"),  plot.background = element_rect(fill = "transparent", color = NA),axis.line = element_line(colour = "red")) +
 	            	geom_hline(aes(yintercept= -log10(0.00000005)),colour = "red", lwd=0.6, linetype = 5)  + 
-	            	scale_colour_manual(values = c("red3","red","orange","orange2","orange","yellow","yellow2","yellow","green2","green","green2","green","blue","blue2","blue","blue2","blue","purple","purple3","purple","purple3","purple")) + 
+	            	scale_colour_manual(values = rep(c("grey67","grey22"),11)) + 
 	            	scale_alpha_manual(values=c(1,1)) +
-	            	scale_size_manual(values=c(0.4,0.9,3)) + 
-	            	scale_fill_manual(values=c("0"="white","1"="blue","2"="pink3","3"="red")) +
-	            	geom_segment(aes(x = linepos, y = 2, xend = linepos, yend = 3.5), linetype=1, col="grey34", size=0.3)
-}
+	            	scale_size_manual(values=c(0.4,3)) + 
+	            	scale_fill_manual(values=c("0"="white","1"="#41BB8A","2"="steelblue4","3"="red"))
+	}
 
 
 #######################################################
@@ -85,43 +90,18 @@ mplot <- function(gwas, bp = NA, chrom = NA, pvalue = NA, intervals=NA, ymax=NA,
 ###########################################################
 
 
-### PANEL A
-
 nonhetM <- fread("zcat < UKB_nonhetero_cc_M.tsv.gz", header = TRUE, stringsAsFactor=FALSE)
 nonhetF <- fread("zcat < UKB_nonhetero_cc_F.tsv.gz", header = TRUE, stringsAsFactor=FALSE)
 nonhetMF <- fread("zcat < UKB_nonhetero_cc_MF.tsv.gz", header = TRUE, stringsAsFactor=FALSE)
 
 nonhetFIN <- rbind(nonhetM,nonhetF,nonhetMF)
 
-p_fin <- mplot(gwas=nonhetFIN,pvalue="PVAL",chrom="CHR",bp="BP",intervals=data.frame(chr=c(15,11,12,7),start=c(56958297,59071040,82045652,114940147),end=c(57583301,59247803,82068452,115112776),sex=c("M","M","MF","MF")),ymax=-log10(0.00000000005))
-png("fig/figure2_panelA.png", type="cairo", width = 11, height = 5, units = 'in', res = 800)
+p_fin <- mplot(gwas=nonhetFIN,pvalue="PVAL",chrom="CHR",bp="BP",intervals=data.frame(chr=c(4,15,11,12,7),start=c(36963942,56999901,59040414,81989337,114940147),end=c(37032454,57583301,59233752,82068452,115314917),sex=c("F","M","M","MF","MF")),ymax=-log10(0.0000000005))
+
+png("fig/figure2.png", type="cairo", width = 11, height = 5, units = 'in', res = 800)
 p_fin
 dev.off()
 
 
 
-
-### PANEL B
-
-nhetM <- fread("zcat < UKB_nsp_M.tsv.gz", header = TRUE, stringsAsFactor=FALSE)
-nhetF <- fread("zcat < UKB_nsp_F.tsv.gz", header = TRUE, stringsAsFactor=FALSE)
-nhetMF <- fread("zcat < UKB_nsp_MF.tsv.gz", header = TRUE, stringsAsFactor=FALSE)
-
-# This file contains the significant intervals
-nhet <- read.csv("data/nonhetpartners_sign_beta.csv", stringsAsFactor=F)
-nhet$start <- sapply(strsplit(sapply(strsplit(nhet$locus,":"),"[",2),"-"),"[",1)
-nhet$end <- sapply(strsplit(sapply(strsplit(nhet$locus,":"),"[",2),"-"),"[",2)
-
-# Depending if sex-specific or not, decide what to plot
-nhet$sex <- ifelse(nhet$whichplot=="Combined","MF",ifelse(nhet$whichplot=="Females","F","M"))
-df <- data.frame(chr=nhet$chr,start=as.numeric(nhet$start),end=as.numeric(nhet$end),sex=nhet$sex)
-df <- df[order(df$sex, decreasing = TRUE),]
-df$sex <- as.character(df$sex)
-
-nhetFIN <- rbind(nhetM,nhetF,nhetMF)
-
-p_fin <- mplot(gwas=nhetFIN,pvalue="P_BOLT_LMM_INF",chrom="CHR",bp="BP",intervals=df,ymax=-log10(0.00000000000005))
-png("fig/figure2_panelB.png", type="cairo", width = 11, height = 5, units = 'in', res = 800)
-p_fin
-dev.off()
 

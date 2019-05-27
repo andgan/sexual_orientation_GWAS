@@ -1,4 +1,4 @@
-# Reproduce all the main figures in the paper: "Large-scale genome-wide association study reveals insights into the genetic architecture, biology, and evolution of non-heterosexual behaviour"
+# Reproduce all the main figures in the paper: "Large-scale GWAS reveals insights into the genetic architecture of same-sex sexual behavior"
 
 Available here: 
 
@@ -14,4 +14,5 @@ This repository contains three folders:
 _Notice:_ 
 
 1) To reproduce Figure 1, access to individual-level UK Biobank data is need it. We provide the variable names, but not the individual level data.
-2) We cannot reproduce Figure 2, panel A because we are not allowed by 23andMe to share more than 10K SNPs. We provided the code to do that based on the summary statistics from just UK Biobank.
+2) We cannot reproduce Figure 2 because we are not allowed by 23andMe to share more than 10K SNPs. We provided the code to do that based on the summary statistics from just UK Biobank.
+3) Panel A of Figure 5 is just based on the genetic correlation that can be extracted from the supplementary tables and so we don't provide code for it
