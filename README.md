@@ -2,7 +2,7 @@
 
 Available here: 
 
-Check also the website for more info: https://geneticsexorientation.info/
+Check also the website for more info: https://geneticsexbehavior.info/
 
 This repository contains three folders: 
 
