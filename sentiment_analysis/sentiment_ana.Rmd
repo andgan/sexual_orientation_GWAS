@@ -79,7 +79,7 @@ access_token_secret <- keys$V1[4]
 
 ## authenticate via web browser
 token <- create_token(
-  app = "gwasbot",
+  app = "xxxxxx",
   consumer_key = api_key,
   consumer_secret = api_secret_key,
   access_token = access_token,
