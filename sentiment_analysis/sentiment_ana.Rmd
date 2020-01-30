@@ -1,0 +1,327 @@
+---
+title: 'Sentiment analysis of: Ganna et al. Large-scale GWAS reveals insights into
+  the genetic architecture of same-sex sexual behavior'
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,width = 60)
+```
+
+## Introduction
+
+**Disclaimer: sentiment analysis has many limitations. **
+**For example cannot recognize sarcasm and irony, jokes, and exaggerations **
+
+This is the sentiment analysis of the paper from Ganna et al https://science.sciencemag.org/content/365/6456/eaat7693.
+
+We retrieve all the twitter and news information from altimetric. Altimetric aggregates only the tweets mentioning the paper via direct link to the journal article. Therefore this is not a comprehensive view of all the tweets about the paper. For example we cannot retrieve the comments to a tweet if they don't include a link to the journal article. 
+
+First we load the libraries needed for the anlysis
+
+```{r message=FALSE}
+library(rtweet)
+library(ggplot2)
+library(tidytext)
+library(dplyr)
+library(tidyr)
+library(lexicon)
+library(sentimentr)
+library(syuzhet)
+library(wordcloud)
+library(widyr)
+library(igraph)
+library(ggraph)
+library(stringr)
+library(readr)
+data("stop_words")
+```
+
+## Quick analysis of news articles
+
+The main focus of the analysis is on twitter data, but we also briefly consider news outlets. Just to check the distribution by country.
+
+The article has been covered so far by 377 news outlets.
+
+English-speaking countries are more likely to cover the study (or to include a link to the paper)
+
+Almost no cover of the article in China.
+
+```{r message=FALSE, warning=FALSE}
+newsoutlets <- read.csv("Altmetric_news_retrieved_2020-01-03.csv")
+
+df <- data.frame(table(newsoutlets$Country))
+
+ggplot(df, aes(x = reorder(Var1, -Freq), y = Freq)) + 
+  geom_bar(stat = "identity") + 
+  geom_text( aes(label=Freq), vjust=-1) + 
+  theme_bw() + 
+  theme(axis.text.x = element_text(angle = 45,hjust = 1)) + 
+  ylab("Number of news") + 
+  xlab("Country")
+```
+
+## Download tweets
+
+After setting up a developper tweet account we read the altimetric file containing all the tweets. The altrimetric file contains all the tweet IDs, but not the text. Therefore we need to use the twitter API to download the individual tweets
+
+```{r message=FALSE,warning=FALSE}
+## read api keys
+keys <- read.table("keys.txt",
+                   header=F, stringsAsFactors = F)
+
+api_key <- keys$V1[1]
+api_secret_key <- keys$V1[2]
+access_token <- keys$V1[3]
+access_token_secret <- keys$V1[4]
+
+## authenticate via web browser
+token <- create_token(
+  app = "gwasbot",
+  consumer_key = api_key,
+  consumer_secret = api_secret_key,
+  access_token = access_token,
+  access_secret = access_token_secret)
+
+
+## Read file with all tweet IDs
+ids <- read.csv("Altmetric_tweets_retrieved_2019-12-20.csv",
+                colClasses=rep("character",29))
+statuses <- c(ids$External.Mention.ID)
+
+## Total number of tweets
+length(statuses)
+```
+
+## Initial analysis on tweets language and dates
+
+We have 11,090 tweets, but some are in other languages. So we need to check the language and also to check how many are direct tweets, or quotes or retweets. Notice that is not possible to get replies to a tweet. For example, if someone post a tweet with the link to the article and many people comment to it, is not possible to get these comments. The only comments retrieved are those that also cite the paper.
+
+We made the file containing the tweets available: tweets_ganna_et_al_retrieved_2019-12-20.tsv
+
+```{r message=FALSE}
+## Get tweets
+#tw <- lookup_statuses(statuses)
+
+## Save file with the tweets
+#write_tsv(tw %>% select("user_id","status_id","created_at","text","lang","is_quote","is_retweet"),path="tweets_ganna_et_al_retrieved_2019-12-20.tsv")
+
+# Read file saved above
+tw <- read_tsv("tweets_ganna_et_al_retrieved_2019-12-20.tsv")
+
+# Plot languages
+df <- merge(tw,langs,by.x="lang",by.y="alpha")
+df <- data.frame(table(df$english))
+
+ggplot(df, aes(x = reorder(Var1, -Freq), y = Freq)) + 
+  geom_bar(stat = "identity") + 
+  geom_text( aes(label=Freq), vjust=-1) + 
+  theme_bw() + 
+  theme(axis.text.x = element_text(angle = 45,hjust = 1)) + 
+  ylab("Number of tweets") + xlab("Languages")
+
+# Plot dates
+df <- data.frame(table(as.Date(as.character(tw$created_at))))
+df <- df %>% mutate(Var1 = as.Date(Var1)) %>% 
+  arrange(Var1) %>% 
+  mutate(Var1f = factor(1:nrow(df)))
+
+ggplot(df, aes(x = Var1f, y = Freq)) + 
+  geom_bar(stat = "identity") + 
+  theme_bw() + theme(axis.text.x = element_text(angle = 45,hjust = 1)) + 
+  ylab("Number of tweets") + 
+  scale_x_discrete("Date of the tweet",
+                   labels=as.character(as.Date(df$Var1[seq(1,length(df$Var1),2)])),
+                   breaks=df$Var1f[seq(1,length(df$Var1),2)])
+
+```
+
+## QC of tweet text
+
+We keep only non-retweets because these are not new messages (no new text). We include quotes because these contain new next.
+
+We perform standard QC of the text to remove non-relevant character, usernames, links etc...
+
+```{r message=FALSE,warning=FALSE}
+## Keep only english language
+twen <- tw %>% filter(lang=="en")
+
+## Check number of replies and retweets
+table(twen$is_quote) # number of quotes
+table(twen$is_retweet) # number of re-tweets
+
+## Exclude retweets
+twennort <- twen %>% filter(is_retweet==FALSE)
+nrow(twennort)
+
+## Data cleaning
+wordsqc1 <- twennort %>%
+  mutate(text =  gsub("\\s?(f|ht)(tp)(s?)(://)([^\\.]*)[\\.|/](\\S*)", " ", text)) %>% ## Remove urls
+  mutate(text =  gsub("@\\S+", " ", text)) %>% ## Remove mentions
+  mutate(text =  gsub("@\\S+", " ", text)) %>% # Remove Controls and special characters
+  mutate(text =  gsub("\\d", " ", text)) %>% # Remove Controls and special characters
+  mutate(text =  gsub('[[:punct:]]', " ", text)) %>% # Remove Punctuations
+  mutate(text =  gsub('#\\S+', " ", text)) %>% # Remove Hashtags
+  mutate(text =  gsub('\\b+RT', " ", text)) %>% # Remove RT
+  mutate(text =  gsub('[[:digit:]]+', " ", text)) %>% # Remove numbers
+  mutate(text =  gsub('[\r\n]', " ", text)) %>% # Remove end of lines
+  mutate(text =  gsub('[^\x01-\x7F]', " ", text)) %>% # Remove non-ASCII characters
+  mutate(text =  str_squish(text))  %>% # Remove extra spaces
+  select(text,status_id) %>%
+  unnest_tokens(word, text, drop=FALSE) %>% # Tokenize and tolower
+  filter(!word %in% tolower(twennort$screen_name)) # remove user names
+
+## Remove stopwords, but not from the text, 
+## as these might be useful for sentence-level sentiment analysis
+wordsqc2 <- wordsqc1 %>%             
+  anti_join(stop_words) 
+
+## Remove words in the title of the paper and some stop words not picked up above
+wordsqc3 <- wordsqc2 %>%             
+  filter(!word %in% c("large-scale", "large", "scale", "gwas", "reveals", "insights",
+                      "into", "the", "genetic", "architecture", "of", "same-sex", 
+                      "same", "sex", "sexual", "behavior", "largescale", "samesex"),
+         !word %in% c("https", "t.co", "amp", "im", "isnt", "ive", "arent", "didnt", 
+                      "theyre", "dont", "youre", "doesnt", "yall")) %>%
+  mutate(text =  gsub("largescale gwas reveals insights into 
+                      the genetic architecture of samesex 
+                      sexual behavior", "", tolower(text)))
+
+```
+
+Number of final unique words and sentences
+```{r message=FALSE}
+length(unique(wordsqc3$text)) # Number of unique tweets
+length(unique(wordsqc3$word)) # Number of unique words
+```
+
+## Most common words and wordcloud
+
+We show the most common words and plot a wordcloud to give a sense of the word composition of the tweets
+
+```{r message=FALSE}
+## 70 most common words
+wordsqc3 %>%
+  count(word, sort = TRUE)  %>%
+  top_n(70) %>%
+  ungroup() %>%
+  mutate(word = reorder(word, n)) %>%
+  ggplot(aes(word, n)) +
+  geom_col(show.legend = FALSE) +
+  labs(y = "Total count",
+       x = NULL) + coord_flip()
+
+## Wordcloud
+pal <- brewer.pal(8,"Dark2")
+wordsqc3 %>% 
+  count(word, sort = TRUE) %>%
+  with(wordcloud(word, n, random.order = FALSE, max.words = 70, colors=pal))
+```
+
+## Relationship between words
+
+We first identify the correlation between words within the same sentence. The correlation indicates how often two words appear together relative to how often they appear separately.
+
+The high "cure-cancer" correlation reflects several people arguing that scientists should use their time to do most important research (e.g. cure cancer). Same explanation applies to "waste money".
+
+We also tried topic analysis (LDA), but results are not very informatives (too few words) 
+
+```{r message=FALSE}
+wordsqc3_cors <- wordsqc3 %>% 
+  group_by(word) %>%
+  filter(n() >= 10) %>%
+  pairwise_cor(word, status_id, sort = TRUE, upper = FALSE)
+
+set.seed(1234)
+wordsqc3_cors %>%
+  filter(correlation > .3) %>%
+  graph_from_data_frame() %>%
+  ggraph(layout = "fr") +
+  geom_edge_link(aes(edge_alpha = correlation, edge_width = correlation), 
+                 edge_colour = "royalblue") +
+  geom_node_point(size = 5) +
+  geom_node_text(aes(label = name), repel = TRUE,
+                 point.padding = unit(0.2, "lines")) +
+  theme_void()
+```
+
+
+## Some selected words 
+
+We wanted to check how often words like "ethics", "ethical", "eugenics" appear and in which context. Most concerns seems to be on "eugenics", no much tweets are about ethics in the study.
+
+```{r message=FALSE}
+temp <- wordsqc3 %>%
+filter(word %in% c("ethics", "ethical"))
+print(temp$text, quote=FALSE)
+print(nrow(temp)) # Number of tweets containing the word ethics or ethical
+```
+```{r message=FALSE}
+temp <- wordsqc3 %>%
+filter(word %in% c("eugenics"))
+print(temp$text, quote=FALSE)
+print(nrow(temp)) # Number of tweets containing the word eugenics
+```
+
+## Sentiment analysis
+
+We tried three approaches. They were selected because perform best in this comparison: https://paulvanderlaken.com/2017/12/27/sentiment-analysis-lexicon-quality/
+
+- Jockers & Rinker combined tables: https://rdrr.io/cran/lexicon/man/hash_sentiment_jockers_rinker.html
+- Sentiword: https://arxiv.org/abs/1510.09079
+- Bing: https://dl.acm.org/doi/10.1145/1014052.1014073
+
+All these methods use dictionaries of words pre-assigned to "positive", "negative" or "neutral" sentiment. The first two methods also consider the sentence context (e.g. negation). 
+
+For each method we report the histogram, the distribution of the sentiment scores and the top 20 sentences with largest score (the score is printed ahead of the sentece, a positive score means an inferred positive comment, a negative score an inferred negative comment)
+
+**Disclaimer: sentiment analysis has many limitations **
+**For example cannot recognize sarcasm and irony, jokes, and exaggerations **
+
+```{r message=FALSE,warning=FALSE}
+setn <- get_sentences(as.vector(unique(wordsqc3$text)))
+
+# Jockers dataset 
+s1 <- sentiment(setn,polarity_dt = lexicon::hash_sentiment_jockers)
+hist(s1$sentiment, main="Sentiment analysis: Jockers & Rinker", 
+     xlab="Sentiment score", 
+     ylab = "Number of sentences")
+
+summary(s1$sentiment)
+
+s1_out <- s1 %>% mutate(text=as.vector(unique(wordsqc3$text))) %>% 
+  arrange(desc(abs(sentiment))) %>% 
+  head(n = 20L)
+print(paste0(round(s1_out$sentiment,2), ": ", s1_out$text), quote=F)
+
+# Sentiword
+s1_sentiword <- sentiment(setn, lexicon::hash_sentiment_sentiword)
+hist(s1_sentiword$sentiment, main="Sentiment analysis: Sentiword", 
+     xlab="Sentiment score", 
+     ylab = "Number of sentences")
+
+summary(s1_sentiword$sentiment)
+
+s1_out_sentiword <- s1_sentiword %>% 
+  mutate(text=as.vector(unique(wordsqc3$text))) %>% 
+  arrange(desc(abs(sentiment))) %>% 
+  head(n = 20L)
+print(paste0(round(s1_out_sentiword$sentiment,2), ": ", s1_out_sentiword$text), quote=F)
+
+# Bing
+s1_bing <- get_sentiment(as.vector(unique(wordsqc3$text)), method="bing")
+hist(s1_bing, main="Sentiment analysis: Bing", 
+     xlab="Sentiment score", 
+     ylab = "Number of sentences")
+
+summary(s1_bing)
+
+s1_out_bing <- data.frame(s1_bing) %>% 
+  mutate(text=as.vector(unique(wordsqc3$text))) %>% 
+  arrange(desc(abs(s1_bing))) %>% 
+  head(n = 20L)
+print(paste0(round(s1_out_bing$s1_bing,2), ": ", s1_out_bing$text), quote=F)
+
+```
